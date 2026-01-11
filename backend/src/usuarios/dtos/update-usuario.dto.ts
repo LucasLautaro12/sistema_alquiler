@@ -7,4 +7,7 @@ export class UpdateUsuarioDto {
 
     @IsNotEmpty()
     nombre?: string;
+
+    @IsNotEmpty()
+    apellido?: string;
 }

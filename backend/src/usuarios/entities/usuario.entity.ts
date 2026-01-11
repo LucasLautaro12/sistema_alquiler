@@ -1,8 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-/* import { Balance } from '../../balances/entities/balance.entity';
-import { Category } from '../../categories/entities/category.entity'; */
+// src/usuarios/entities/usuario.entity.ts
 
-@Entity('users')
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Balances } from '../../balances/entities/balances.entity';
+import { Categorias } from '../../categorias/entities/categorias.entity';
+
+@Entity('usuarios')
 export class Usuario {
   @PrimaryGeneratedColumn()
   dni: number;
@@ -10,11 +12,14 @@ export class Usuario {
   @Column({ length: 100 })
   nombre: string;
 
-  /* @OneToMany(() => Balance, (balance) => balance.user)
-  balances: Balance[];
+  @Column({ length: 500 })
+  contrasenia: string;
 
-  @OneToMany(() => Category, (category) => category.paidByUser)
-  paidCategories: Category[]; */
+  @OneToMany(() => Balances, (balances) => balances.dni)
+  balances: Balances[];  
+
+  @OneToMany(() => Categorias, (categorias) => categorias.pagado_por_dni)
+  pagado_por_dni: Categorias[]; 
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
