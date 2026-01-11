@@ -1,10 +1,17 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsInt, IsNotEmpty, IsNumber, IsString, Min, MinLength } from "class-validator";
 
 export class CreateUsuarioDto {
-    @IsNotEmpty()
-    @IsNumber()
+    
+    @IsInt()
+    @Min(1)
     dni: number;
 
     @IsNotEmpty()
+    @IsString()
     nombre: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @MinLength(6)
+    contrasenia: string;
 }

@@ -3,6 +3,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { Balances } from '../../balances/entities/balances.entity';
 import { Categorias } from '../../categorias/entities/categorias.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity('usuarios')
 export class Usuarios {
@@ -12,6 +13,7 @@ export class Usuarios {
   @Column({ length: 100 })
   nombre: string;
 
+  @Exclude()
   @Column({ length: 500 })
   contrasenia: string;
 
