@@ -5,7 +5,7 @@ import { Balances } from '../../balances/entities/balances.entity';
 import { Categorias } from '../../categorias/entities/categorias.entity';
 
 @Entity('usuarios')
-export class Usuario {
+export class Usuarios {
   @PrimaryGeneratedColumn()
   dni: number;
 
@@ -16,10 +16,10 @@ export class Usuario {
   contrasenia: string;
 
   @OneToMany(() => Balances, (balances) => balances.dni)
-  balances: Balances[];  
+  balances: Balances[];
 
   @OneToMany(() => Categorias, (categorias) => categorias.pagado_por_dni)
-  pagado_por_dni: Categorias[]; 
+  pagado_por_dni: Categorias[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
