@@ -119,7 +119,7 @@ export class GastosMensualesService {
     return this.gastoRepository.save(gasto);
   }
 
-  async getResumen(id: number) {
+  async getResumenMensual(id: number) {
     const gasto = await this.findOne(id);
 
     // Convertir decimales de la BD a números seguros
