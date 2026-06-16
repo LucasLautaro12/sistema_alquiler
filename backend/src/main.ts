@@ -6,33 +6,36 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // ─── Validación global ───────────────────────────────────────────────────────
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,           // Elimina propiedades no declaradas en el DTO
-      forbidNonWhitelisted: true, // Lanza error si se envían propiedades extra
-      transform: true,            // Convierte los tipos automáticamente (string→number etc.)
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
     }),
   );
 
-  // ─── Prefijo global ──────────────────────────────────────────────────────────
   app.setGlobalPrefix('api');
 
-  // ─── Swagger ─────────────────────────────────────────────────────────────────
   const config = new DocumentBuilder()
     .setTitle('Sistema de Alquiler Compartido')
     .setDescription(
-      `API para gestionar gastos mensuales de un alquiler compartido entre convivientes.\n\n` +
+      `API para gestionar gastos mensuales de un alquiler compartido.\n\n` +
+      `**Categorías de gastos:** Alquiler (efectivo), Gas, Luz/Agua, Limsa, Gastos Comunes\n\n` +
       `**Flujo de uso:**\n` +
-      `1. Crear los usuarios (\`POST /api/usuarios\`)\n` +
-      `2. Registrar los gastos del mes (\`POST /api/gastos-mensuales\`)\n` +
-      `3. Consultar el resumen con deudas calculadas (\`GET /api/gastos-mensuales/resumen/{anio}/{mes}\`)\n` +
-      `4. Opcionalmente persistir los balances (\`POST /api/balances/generar/{anio}/{mes}\`)`,
+      `1. Crear usuarios (POST /api/users)\n` +
+      `2. Crear período mensual (POST /api/monthly-periods)\n` +
+      `3. Registrar gastos del mes (POST /api/monthly-expenses)\n` +
+      `4. Registrar quién pagó cada servicio (POST /api/expense-payments)\n` +
+      `5. Consultar resumen con deudas calculadas (GET /api/reports/monthly-summary/:periodId)\n` +
+      `6. Registrar contribuciones en efectivo (POST /api/cash-contributions)`,
     )
     .setVersion('1.0')
-    .addTag('Usuarios', 'Gestión de los convivientes')
-    .addTag('Gastos Mensuales', 'Registro de servicios y cálculo de deudas')
-    .addTag('Balances', 'Persistencia de balances calculados por usuario y mes')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
@@ -47,6 +50,7 @@ async function bootstrap() {
   await app.listen(port);
 
   console.log(`\n🚀 Servidor corriendo en: http://localhost:${port}/api`);
-  console.log(`📚 Swagger docs en:        http://localhost:${port}/api/docs\n`);
+  console.log(`📚 Swagger docs en:      http://localhost:${port}/api/docs\n`);
 }
+
 bootstrap();
