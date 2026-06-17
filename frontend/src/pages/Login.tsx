@@ -17,8 +17,8 @@ export default function Login() {
     try {
       const res = await auth.login({ email, password })
       setToken(res.accessToken)
-      localStorage.setItem('alquiler_user', JSON.stringify(res.user))
-      navigate('/')
+      localStorage.setItem('app_user', JSON.stringify(res.user))
+      navigate('/home')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al iniciar sesión')
     } finally {

@@ -40,6 +40,10 @@ export class UsersService {
     return this.userRepository.findOne({ where: { dni, status: true } });
   }
 
+  async findByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { email, status: true } });
+  }
+
   async create(dto: CreateUserDto, createdBy?: number): Promise<User> {
     const existingDni = await this.userRepository.findOne({
       where: { dni: dto.dni },
@@ -100,5 +104,17 @@ export class UsersService {
 
   async countActive(): Promise<number> {
     return this.userRepository.count({ where: { status: true } });
+  }
+
+  async updateStats(id: number): Promise<void> {
+    await this.userRepository.query(
+      `UPDATE users SET
+        total_points = COALESCE((SELECT SUM(points) FROM predictions WHERE user_id = $1 AND status = true AND is_scored = true), 0),
+        exact_predictions = COALESCE((SELECT COUNT(*) FROM predictions WHERE user_id = $1 AND status = true AND is_exact = true), 0),
+        correct_outcomes = COALESCE((SELECT COUNT(*) FROM predictions WHERE user_id = $1 AND status = true AND is_correct_outcome = true), 0),
+        total_predictions = COALESCE((SELECT COUNT(*) FROM predictions WHERE user_id = $1 AND status = true AND is_scored = true), 0)
+      WHERE id = $1`,
+      [id],
+    );
   }
 }

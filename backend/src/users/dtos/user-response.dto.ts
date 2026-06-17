@@ -32,6 +32,18 @@ export class UserResponseDto {
   @ApiPropertyOptional({ example: 1 })
   updatedBy: number | null;
 
+  @ApiProperty({ example: 0 })
+  totalPoints: number;
+
+  @ApiProperty({ example: 0 })
+  exactPredictions: number;
+
+  @ApiProperty({ example: 0 })
+  correctOutcomes: number;
+
+  @ApiProperty({ example: 0 })
+  totalPredictions: number;
+
   static fromEntity(entity: User): UserResponseDto {
     return {
       id: entity.id,
@@ -44,6 +56,10 @@ export class UserResponseDto {
       createdBy: entity.createdBy,
       updatedAt: entity.updatedAt,
       updatedBy: entity.updatedBy,
+      totalPoints: entity.totalPoints,
+      exactPredictions: entity.exactPredictions,
+      correctOutcomes: entity.correctOutcomes,
+      totalPredictions: entity.totalPredictions,
     };
   }
 

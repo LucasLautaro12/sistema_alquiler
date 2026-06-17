@@ -502,3 +502,159 @@ textarea.form-control { resize: vertical; min-height: 80px; }
   .page-content { padding: 16px; }
   .topbar { padding: 0 16px; }
 }
+
+/* ===== HOME PAGE ===== */
+.home-page { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
+.home-header { text-align: center; margin-bottom: 3rem; }
+.home-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #e0e0e0; }
+.home-header p { font-size: 1.1rem; color: #999; }
+.home-cards { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; max-width: 900px; }
+.home-card { background: #1a2332; border-radius: 16px; padding: 2.5rem; width: 380px; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; text-align: center; }
+.home-card:hover { transform: translateY(-5px); }
+.home-card-alquiler { border-color: #4a90d9; }
+.home-card-alquiler:hover { background: #1e2d42; box-shadow: 0 8px 25px rgba(74, 144, 217, 0.2); }
+.home-card-prode { border-color: #f5c518; }
+.home-card-prode:hover { background: #1e2d42; box-shadow: 0 8px 25px rgba(245, 197, 24, 0.2); }
+.home-card-icon { font-size: 4rem; margin-bottom: 1rem; }
+.home-card h2 { font-size: 1.5rem; margin-bottom: 0.75rem; color: #e0e0e0; }
+.home-card p { color: #999; margin-bottom: 1.5rem; line-height: 1.5; }
+.home-card-btn { display: inline-block; padding: 0.6rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+.home-card-alquiler .home-card-btn { background: #4a90d9; color: #fff; }
+.home-card-prode .home-card-btn { background: #f5c518; color: #000; }
+
+/* ===== PRODE LAYOUT ===== */
+.prode-layout { display: flex; min-height: 100vh; }
+.prode-sidebar { width: 260px; background: linear-gradient(180deg, #0d1f3c 0%, #0a1628 100%); display: flex; flex-direction: column; border-right: 1px solid #1e3050; }
+.prode-sidebar .sidebar-header { padding: 1.5rem; text-align: center; border-bottom: 1px solid #1e3050; }
+.prode-sidebar .sidebar-header h1 { font-size: 1.3rem; color: #f5c518; margin: 0; }
+.prode-sidebar .sidebar-header span { font-size: 0.8rem; color: #888; }
+.prode-sidebar .sidebar-nav { flex: 1; padding: 1rem 0; overflow-y: auto; }
+.prode-sidebar .nav-section { margin-bottom: 1rem; }
+.prode-sidebar .nav-section-title { padding: 0.5rem 1.5rem; font-size: 0.7rem; text-transform: uppercase; color: #666; letter-spacing: 1px; }
+.prode-sidebar .nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.7rem 1.5rem; color: #bbb; text-decoration: none; transition: all 0.2s; font-size: 0.9rem; border-left: 3px solid transparent; }
+.prode-sidebar .nav-item:hover { background: rgba(245, 197, 24, 0.08); color: #fff; }
+.prode-sidebar .nav-item.active { background: rgba(245, 197, 24, 0.12); color: #f5c518; border-left-color: #f5c518; }
+.prode-sidebar .sidebar-footer { padding: 1rem 1.5rem; border-top: 1px solid #1e3050; }
+.prode-sidebar .user-info { margin-bottom: 0.75rem; }
+.prode-sidebar .user-info strong { display: block; color: #ddd; font-size: 0.85rem; }
+.prode-sidebar .user-info span { color: #888; font-size: 0.75rem; }
+.prode-main { flex: 1; padding: 2rem; overflow-y: auto; background: #0a1628; }
+
+/* ===== PRODE MATCHES ===== */
+.prode-filters { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.prode-filter-btn { padding: 0.5rem 1.2rem; border-radius: 20px; border: 1px solid #1e3050; background: transparent; color: #bbb; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+.prode-filter-btn:hover { border-color: #f5c518; color: #f5c518; }
+.prode-filter-btn.active { background: #f5c518; color: #000; border-color: #f5c518; font-weight: 600; }
+.prode-matches-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
+.prode-match-card { background: #152238; border-radius: 12px; padding: 1.5rem; border: 1px solid #1e3050; transition: all 0.2s; }
+.prode-match-card:hover { border-color: #2a4060; }
+.prode-match-teams { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.prode-team { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; flex: 1; }
+.prode-team img { width: 48px; height: 48px; object-fit: contain; }
+.prode-team span { font-size: 0.9rem; font-weight: 600; color: #e0e0e0; text-align: center; }
+.prode-score { display: flex; align-items: center; gap: 0.75rem; }
+.prode-score-input { width: 48px; height: 48px; text-align: center; font-size: 1.5rem; font-weight: 700; background: #0d1f3c; border: 2px solid #1e3050; border-radius: 8px; color: #fff; outline: none; }
+.prode-score-input:focus { border-color: #f5c518; }
+.prode-score-display { font-size: 2rem; font-weight: 800; color: #f5c518; min-width: 60px; text-align: center; }
+.prode-score-sep { font-size: 1.5rem; color: #666; }
+.prode-match-info { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #888; }
+.prode-match-stage { background: #1e3050; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; color: #aaa; text-transform: capitalize; }
+.prode-match-status { padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; text-transform: uppercase; }
+.prode-match-status.scheduled { background: #1a3a5c; color: #4a90d9; }
+.prode-match-status.finished { background: #1a3a2c; color: #28a745; }
+.prode-match-status.in_play { background: #3a3a1a; color: #f5c518; }
+.prode-save-btn { margin-top: 1rem; width: 100%; padding: 0.6rem; border-radius: 8px; border: none; background: #f5c518; color: #000; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+.prode-save-btn:hover { background: #e0b000; }
+.prode-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.prode-prediction-badge { margin-top: 0.75rem; padding: 0.4rem 0.8rem; background: #0d1f3c; border-radius: 6px; text-align: center; font-size: 0.85rem; color: #f5c518; }
+.prode-prediction-badge span { color: #888; }
+
+/* ===== PRODE PREDICTIONS ===== */
+.prode-stats-summary { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.prode-stat-card { background: #152238; border-radius: 12px; padding: 1.2rem 1.5rem; text-align: center; flex: 1; min-width: 120px; border: 1px solid #1e3050; }
+.prode-stat-card .stat-value { font-size: 2rem; font-weight: 800; }
+.prode-stat-card .stat-label { font-size: 0.75rem; color: #888; margin-top: 0.25rem; text-transform: uppercase; }
+.prode-stat-card.exact { border-color: #28a745; }
+.prode-stat-card.exact .stat-value { color: #28a745; }
+.prode-stat-card.correct { border-color: #f5c518; }
+.prode-stat-card.correct .stat-value { color: #f5c518; }
+.prode-stat-card.wrong { border-color: #dc3545; }
+.prode-stat-card.wrong .stat-value { color: #dc3545; }
+.prode-stat-card.total { border-color: #4a90d9; }
+.prode-stat-card.total .stat-value { color: #4a90d9; }
+
+.prode-predictions-list { display: grid; gap: 0.75rem; }
+.prode-prediction-item { display: flex; align-items: center; gap: 1rem; background: #152238; padding: 1rem 1.5rem; border-radius: 10px; border-left: 4px solid #1e3050; }
+.prode-prediction-item.is-exact { border-left-color: #28a745; background: #1a2e22; }
+.prode-prediction-item.is-correct { border-left-color: #f5c518; background: #1e2d1a; }
+.prode-prediction-item.is-wrong { border-left-color: #dc3545; background: #2e1a1a; }
+.prode-prediction-item.is-pending { border-left-color: #555; }
+.prode-prediction-match { flex: 1; }
+.prode-prediction-match .match-teams { font-weight: 600; color: #e0e0e0; }
+.prode-prediction-match .match-date { font-size: 0.75rem; color: #888; }
+.prode-prediction-scores { display: flex; align-items: center; gap: 0.5rem; }
+.prode-prediction-scores .pred { color: #f5c518; font-weight: 700; }
+.prode-prediction-scores .real { color: #4a90d9; font-weight: 600; }
+.prode-prediction-scores .sep { color: #666; }
+.prode-prediction-points { font-size: 1.3rem; font-weight: 800; min-width: 40px; text-align: center; }
+.prode-prediction-points.exact { color: #28a745; }
+.prode-prediction-points.correct { color: #f5c518; }
+.prode-prediction-points.wrong { color: #dc3545; }
+.prode-prediction-points.pending { color: #555; }
+
+/* ===== PRODE RANKING ===== */
+.prode-podium { display: flex; justify-content: center; align-items: flex-end; gap: 1.5rem; margin-bottom: 2.5rem; padding-top: 1rem; }
+.prode-podium-item { text-align: center; padding: 1.5rem 2rem; border-radius: 16px; min-width: 160px; }
+.prode-podium-item.gold { background: linear-gradient(180deg, #3a3520 0%, #1e2d1a 100%); border: 2px solid #f5c518; order: 2; }
+.prode-podium-item.silver { background: linear-gradient(180deg, #2a2a3a 0%, #1a1a2a 100%); border: 2px solid #c0c0c0; order: 1; }
+.prode-podium-item.bronze { background: linear-gradient(180deg, #3a2a1a 0%, #2a1a1a 100%); border: 2px solid #cd7f32; order: 3; }
+.prode-podium-item .medal { font-size: 2.5rem; }
+.prode-podium-item .name { font-size: 1.1rem; font-weight: 700; color: #e0e0e0; margin: 0.5rem 0; }
+.prode-podium-item .points { font-size: 2rem; font-weight: 800; }
+.prode-podium-item.gold .points { color: #f5c518; }
+.prode-podium-item.silver .points { color: #c0c0c0; }
+.prode-podium-item.bronze .points { color: #cd7f32; }
+
+.prode-ranking-table { width: 100%; border-collapse: collapse; }
+.prode-ranking-table th { text-align: left; padding: 0.75rem 1rem; font-size: 0.75rem; text-transform: uppercase; color: #888; border-bottom: 1px solid #1e3050; }
+.prode-ranking-table td { padding: 0.75rem 1rem; font-size: 0.9rem; color: #ccc; border-bottom: 1px solid #152238; }
+.prode-ranking-table tr:hover td { background: rgba(245, 197, 24, 0.05); }
+.prode-ranking-table tr.is-current-user td { background: rgba(245, 197, 24, 0.1); color: #f5c518; font-weight: 600; }
+.prode-ranking-table .position { font-weight: 700; color: #888; width: 50px; }
+.prode-ranking-table .position.top-1 { color: #f5c518; }
+.prode-ranking-table .position.top-2 { color: #c0c0c0; }
+.prode-ranking-table .position.top-3 { color: #cd7f32; }
+
+/* ===== PRODE MATCH PREDICTIONS PAGE ===== */
+.prode-match-header { text-align: center; margin-bottom: 2rem; padding: 2rem; background: #152238; border-radius: 12px; border: 1px solid #1e3050; }
+.prode-match-header .teams { display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+.prode-match-header .team { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.prode-match-header .team img { width: 64px; height: 64px; }
+.prode-match-header .team span { font-size: 1.2rem; font-weight: 700; color: #e0e0e0; }
+.prode-match-header .result { font-size: 2.5rem; font-weight: 800; color: #f5c518; }
+.prode-match-header .meta { font-size: 0.85rem; color: #888; }
+
+.prode-predictions-table { width: 100%; border-collapse: collapse; }
+.prode-predictions-table th { text-align: left; padding: 0.75rem 1rem; font-size: 0.75rem; text-transform: uppercase; color: #888; border-bottom: 1px solid #1e3050; }
+.prode-predictions-table td { padding: 0.75rem 1rem; font-size: 0.9rem; color: #ccc; border-bottom: 1px solid #152238; }
+.prode-predictions-table tr.is-exact td { background: rgba(40, 167, 69, 0.1); color: #28a745; font-weight: 600; }
+.prode-predictions-table tr.is-correct td { background: rgba(245, 197, 24, 0.08); color: #f5c518; }
+.prode-predictions-table tr.is-wrong td { color: #dc3545; }
+
+/* ===== PRODE PROFILE ===== */
+.prode-profile { max-width: 600px; }
+.prode-profile-card { background: #152238; border-radius: 12px; padding: 2rem; border: 1px solid #1e3050; margin-bottom: 1.5rem; }
+.prode-profile-card h2 { color: #e0e0e0; margin-bottom: 1.5rem; font-size: 1.2rem; }
+.prode-profile .form-group { margin-bottom: 1rem; }
+.prode-profile .form-group label { display: block; color: #888; font-size: 0.8rem; margin-bottom: 0.3rem; }
+.prode-profile .form-group input { width: 100%; padding: 0.6rem 0.8rem; background: #0d1f3c; border: 1px solid #1e3050; border-radius: 6px; color: #e0e0e0; outline: none; }
+.prode-profile .form-group input:focus { border-color: #f5c518; }
+
+/* ===== PRODE ADMIN ===== */
+.prode-admin { max-width: 1200px; }
+.prode-admin-card { background: #152238; border-radius: 12px; padding: 1.5rem; border: 1px solid #1e3050; margin-bottom: 1rem; }
+.prode-admin-card h2 { color: #e0e0e0; font-size: 1.1rem; margin-bottom: 1rem; }
+.prode-alert { padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; }
+.prode-alert-success { background: #1a3a2c; color: #28a745; border: 1px solid #28a745; }
+.prode-alert-error { background: #3a1a1a; color: #dc3545; border: 1px solid #dc3545; }
+.prode-admin-team-card:hover { border-color: #f5c518; }

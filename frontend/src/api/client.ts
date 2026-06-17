@@ -1,4 +1,4 @@
-const TOKEN_KEY = 'alquiler_token'
+const TOKEN_KEY = 'app_token'
 const API_BASE = '/api'
 
 export function getToken(): string | null {

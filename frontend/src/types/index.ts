@@ -9,6 +9,10 @@ export interface User {
   createdBy: number | null
   updatedAt: string
   updatedBy: number | null
+  totalPoints: number
+  exactPredictions: number
+  correctOutcomes: number
+  totalPredictions: number
 }
 
 export interface CreateUserDto {
@@ -195,4 +199,110 @@ export interface TrendResponse {
 export interface PaginatedResponse<T> {
   data: T[]
   total: number
+}
+
+export interface Team {
+  id: number
+  name: string
+  code: string
+  country: string
+  flagUrl: string | null
+  logoUrl: string | null
+  group: string | null
+}
+
+export interface Tournament {
+  id: number
+  name: string
+  season: string
+  startDate: string
+  endDate: string | null
+}
+
+export interface Match {
+  id: number
+  tournamentId: number
+  homeTeamId: number
+  awayTeamId: number
+  homeTeam: Team
+  awayTeam: Team
+  tournament: Tournament
+  matchDate: string
+  matchStatus: 'scheduled' | 'in_play' | 'finished' | 'postponed' | 'cancelled'
+  stage: string
+  homeScore: number | null
+  awayScore: number | null
+  matchday: number | null
+  status: boolean
+}
+
+export interface Prediction {
+  id: number
+  userId: number
+  matchId: number
+  user: User
+  match: Match
+  homeScore: number
+  awayScore: number
+  points: number
+  isExact: boolean
+  isCorrectOutcome: boolean
+  isScored: boolean
+  createdAt: string
+  updatedAt: string
+}
+
+export interface CreatePredictionDto {
+  matchId: number
+  homeScore: number
+  awayScore: number
+}
+
+export interface RankingEntry {
+  position: number
+  id: number
+  username: string
+  name: string
+  totalPoints: number
+  exactPredictions: number
+  correctOutcomes: number
+  totalPredictions: number
+}
+
+export interface GroupStanding {
+  group: string
+  teams: GroupStandingTeam[]
+}
+
+export interface GroupStandingTeam {
+  teamId: number
+  teamName: string
+  flagUrl: string | null
+  played: number
+  won: number
+  drawn: number
+  lost: number
+  goalsFor: number
+  goalsAgainst: number
+  goalDifference: number
+  points: number
+}
+
+export interface KnockoutTemplate {
+  key: number
+  name: string
+  home: string
+  away: string
+  stage: string
+  defaultDate: string
+}
+
+export interface BulkMatchInput {
+  homeTeamId: number
+  awayTeamId: number
+  matchDate: string
+  stage: string
+  matchday?: number
+  homeScore?: number | null
+  awayScore?: number | null
 }

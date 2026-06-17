@@ -38,4 +38,16 @@ export class User extends BaseEntity {
 
   @OneToMany(() => CashContribution, (contribution) => contribution.user)
   cashContributions: CashContribution[];
+
+  @Column({ type: 'int', name: 'total_points', default: 0 })
+  totalPoints: number;
+
+  @Column({ type: 'int', name: 'exact_predictions', default: 0 })
+  exactPredictions: number;
+
+  @Column({ type: 'int', name: 'correct_outcomes', default: 0 })
+  correctOutcomes: number;
+
+  @Column({ type: 'int', name: 'total_predictions', default: 0 })
+  totalPredictions: number;
 }

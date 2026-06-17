@@ -9,6 +9,8 @@ import type {
   CashContribution, CreateContributionDto,
   AuditLog, PaginatedResponse,
   MonthlySummary, CategoryHistoryItem, UserPaymentHistory, Comparison, TrendResponse,
+  Team, Tournament, Match, Prediction, CreatePredictionDto, RankingEntry,
+  GroupStanding, KnockoutTemplate, BulkMatchInput,
 } from '../types'
 
 export const auth = {
@@ -77,4 +79,47 @@ export const audit = {
   list: (page = 1, limit = 50) => api.get<PaginatedResponse<AuditLog>>(`/audit?page=${page}&limit=${limit}`),
   byTableAndRecord: (tableName: string, recordId: number) =>
     api.get<AuditLog[]>(`/audit/${tableName}/${recordId}`),
+}
+
+export const teams = {
+  list: () => api.get<Team[]>('/teams'),
+  get: (id: number) => api.get<Team>(`/teams/${id}`),
+}
+
+export const tournaments = {
+  list: () => api.get<Tournament[]>('/tournaments'),
+  get: (id: number) => api.get<Tournament>(`/tournaments/${id}`),
+}
+
+export const matches = {
+  list: (params?: Record<string, string>) => {
+    const query = params ? '?' + new URLSearchParams(params).toString() : ''
+    return api.get<Match[]>(`/matches${query}`)
+  },
+  upcoming: () => api.get<Match[]>('/matches/upcoming'),
+  get: (id: number) => api.get<Match>(`/matches/${id}`),
+  updateResult: (id: number, homeScore: number, awayScore: number) =>
+    api.patch<Match>(`/matches/${id}/result`, { homeScore, awayScore }),
+}
+
+export const predictions = {
+  myPredictions: () => api.get<Prediction[]>('/predictions/me'),
+  byMatch: (matchId: number) => api.get<Prediction[]>(`/predictions/match/${matchId}`),
+  create: (dto: CreatePredictionDto) => api.post<Prediction>('/predictions', dto),
+  update: (id: number, dto: CreatePredictionDto) => api.patch<Prediction>(`/predictions/${id}`, dto),
+  delete: (id: number) => api.delete<void>(`/predictions/${id}`),
+}
+
+export const rankings = {
+  global: () => api.get<RankingEntry[]>('/rankings'),
+  top: () => api.get<RankingEntry[]>('/rankings/top'),
+  me: () => api.get<RankingEntry>('/rankings/me'),
+}
+
+export const prodeAdmin = {
+  seed: () => api.post<{ message: string; teams: number; tournament: any }>('/prode-admin/seed', {}),
+  getGroups: () => api.get<GroupStanding[]>('/prode-admin/groups'),
+  getGroup: (group: string) => api.get<GroupStanding>(`/prode-admin/groups/${group}`),
+  bulkCreateMatches: (matches: BulkMatchInput[]) => api.post<Match[]>('/prode-admin/matches/bulk', { matches }),
+  getKnockoutTemplate: () => api.get<KnockoutTemplate[]>('/prode-admin/knockout-template'),
 }
